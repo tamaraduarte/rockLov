@@ -13,39 +13,20 @@ Cenario: Fazer cadastro
         |nome  |email           |senha |
         |Tamara|tamara@gmail.com|pwd123|
     Então sou redirecionado para o Dashboard
-@tentativa_cadastro
-Cenario: Submeter cadastro sem o nome
 
+@tentativa_cadastro
+Esquema do Cenario: Tentativa de Cadastro
     Dado que acesso a página de cadastro
     Quando submeto o seguinte formulário de cadastro:
-        |nome  |email           |senha |
-        |      |tamara@gmail.com|pwd123|
-    Então vejo a mensagem de alerta: "Oops. Informe seu nome completo!"
-
-@tentativa_cadastro
-Cenario: Submeter cadastro sem o email
-
-    Dado que acesso a página de cadastro
-    Quando submeto o seguinte formulário de cadastro:
-        |nome  |email |senha |
-        |Tamara|      |pwd123|
-    Então vejo a mensagem de alerta: "Oops. Informe um email válido!"
-
-@tentativa_cadastro
-Cenario: Submeter cadastro com email incorreto
-
-    Dado que acesso a página de cadastro
-    Quando submeto o seguinte formulário de cadastro:
-        |nome  |email           |senha |
-        |Tamara|tamara*gmail.com|pwd123|
-    Então vejo a mensagem de alerta: "Oops. Informe um email válido!"
-
-@tentativa_cadastro
-Cenario: Submeter cadastro sem a senha
-
-    Dado que acesso a página de cadastro
-   Quando submeto o seguinte formulário de cadastro:
-        |nome  |email           |senha |
-        |Tamara|tamara@gmail.com|      |
-    Então vejo a mensagem de alerta: "Oops. Informe sua senha secreta!"
+        |nome         |email        |senha        |
+        |<nome_input> |<email_input>|<senha_input>|
+    Então vejo a mensagem de alerta: "<mensagem_output>"
+    
+    Exemplos:
+        |nome_input|email_input     |senha_input|mensagem_output                 |
+        |          |tamara@gmail.com|pwd123     |Oops. Informe seu nome completo!|
+        |tamara    |                |pwd123     |Oops. Informe um email válido!  |
+        |tamara    |tamara*gmail.com|pwd123     |Oops. Informe um email válido!  |
+        |tamara    |tamaragmail.com |pwd123      |Oops. Informe um email válido! |
+        |tamara    |tamara@gmail.com|           |Oops. Informe sua senha secreta!|
 

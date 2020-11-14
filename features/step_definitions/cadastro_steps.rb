@@ -7,11 +7,11 @@ end
 Quando('submeto o seguinte formulário de cadastro:') do |table|
     # table is a Cucumber::MultilineArgument::DataTable
 
-    log table.hashes #array []
+   # log table.hashes #array []
     
     user = table.hashes.first
 
-    log user #objeto
+  #  log user #objeto
 
     MongoDB.new.remove_user(user[:email])
 
