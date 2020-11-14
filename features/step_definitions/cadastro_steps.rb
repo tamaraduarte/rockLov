@@ -26,12 +26,6 @@ Quando('submeto o meu cadastro sem o nome') do
 
     click_button "Cadastrar"
 end
-  
-  Então('vejo a mensagem de alerta: Oops. Informe seu nome completo!') do
-   alert = find(".alert-dark")
-   expect(alert.text).to eql "Oops. Informe seu nome completo!"
-
-end
 
 #sem email
 Quando('submeto o meu cadastro sem o email') do
@@ -50,11 +44,6 @@ Quando('submeto o meu cadastro com email incorreto') do
     click_button "Cadastrar"
 end
   
-  Então('vejo a mensagem de alerta: Oops. Informe um email válido!') do
-    alert = find(".alert-dark")
-   expect(alert.text).to eql "Oops. Informe um email válido!"
-end
-
 #sem senha
 Quando('submeto o meu cadastro sem a senha') do
     find("#fullName").set "Tamara Sem Sobrenome"
@@ -63,7 +52,10 @@ Quando('submeto o meu cadastro sem a senha') do
     click_button "Cadastrar"
 end
   
-  Então('vejo a mensagem de alerta: Oops. Informe sua senha secreta!') do
+
+#refactoring tentativa_cadastro
+Então('vejo a mensagem de alerta: {string}') do |expected_alert|
     alert = find(".alert-dark")
-   expect(alert.text).to eql "Oops. Informe sua senha secreta!"
+    expect(alert.text).to eql expected_alert
+
 end
