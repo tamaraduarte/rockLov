@@ -1,4 +1,5 @@
 Dado('que estou logado como {string} e {string}') do |email, password|
+    @email = email
     visit "http://rocklov-web:3000"
     find("input[placeholder='Seu e-email']").set email
     find("input[type=password]").set password
@@ -13,6 +14,8 @@ end
 
 Dado('que eu tenho o seguinte equipamento:') do |table| 
     @anuncio = table.rows_hash
+
+    MongoDB.new.remove_equipo(@anuncio[:nome], @email)
     #log anuncio
 end
   
